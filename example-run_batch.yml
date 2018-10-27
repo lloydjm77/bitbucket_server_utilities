@@ -1,0 +1,23 @@
+bitbucket:
+  host: bitbucket.jlloyd.io
+  project: PROJ
+jenkins:
+  host: jenkins.jlloyd.io
+inclusions:
+  # Specify an exact list of repos to execute operations against.  If both 
+  # inclusions and exclusions are provided, only the inclusions will be used.
+  - my-web-app
+exclusions:
+  # Specify an exact list of repos to NOT execute operations against.  If both 
+  # inclusions and exclusions are provided, only the inclusions will be used.
+  - my-excluded-web-app
+project-operations:
+  # Project operations are only executed once per project.
+  # Example: Configure the SonarQube plugin for a Bitbucket project.
+  - sonar_qube:configure_for_project
+operations:
+  # Operations are executed once per repo.
+  # Example: Trigger a pipeline job for a specific branch in a Bitbucket repo.
+  - job:trigger_pipeline_branch_job<=master
+  - sonar_qube:configure<=io.jlloyd
+  - 'branch:create_branch<={"name":"release","startPoint":"master"}'

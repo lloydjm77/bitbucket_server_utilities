@@ -1,0 +1,32 @@
+bitbucket:
+  host: bitbucket.jlloyd.io
+  project: PROJ
+jenkins:
+  host: jenkins.jlloyd.io
+inclusions:
+  # Specify an exact list of repos to execute operations against.  If both 
+  # inclusions and exclusions are provided, only the inclusions will be used.
+  - my-web-app
+exclusions:
+  # Specify an exact list of repos to NOT execute operations against.  If both 
+  # inclusions and exclusions are provided, only the inclusions will be used.
+  - my-excluded-web-app
+commands:
+  # Example: Generate a set of commands that can be used to clone all repos
+  # in a project, then perform a Maven build on the release branch.  {url}
+  # will be subsituted by the clone URL and {repo} will be substituted by the
+  # repo name.
+  #
+  # Windows example:
+  - cd \Users\b#\repo
+  - git clone {url}
+  - cd \Users\b#\repo\{repo}
+  - git checkout release
+  - mvn clean package
+  #
+  # MacOS/Linux example:
+  - cd ~/software-development/repo
+  - git clone {url}
+  - cd ~/software-development/repo/{repo}
+  - git checkout release
+  - mvn clean package
